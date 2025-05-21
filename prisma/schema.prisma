@@ -1,6 +1,7 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -11,8 +12,8 @@ datasource db {
 model Users {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   discordId String   @unique
-  level     Int?     @default(1)
-  xp        Int?     @default(0)
+  level     Int      @default(1)
+  xp        Int      @default(0)
   totalXp   Int?     @default(0)
   messages  Int?     @default(0)
   createdAt DateTime @default(now())
