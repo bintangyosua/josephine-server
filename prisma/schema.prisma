@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider      = "prisma-client-js"
+  output        = "../generated/prisma"
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
@@ -19,4 +19,11 @@ model Users {
   messages  Int?     @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Commands {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String @unique
+  category    String
+  description String
 }
