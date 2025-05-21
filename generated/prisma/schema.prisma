@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  discordId String   @unique
+  level     Int      @default(1)
+  xp        Int      @default(0)
+  totalXp   Int      @default(0)
+  messages  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
