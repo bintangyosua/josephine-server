@@ -11,6 +11,16 @@ app.get("/", async (c) => {
   return c.json(users);
 });
 
+app.get("/:id", async (c) => {
+  const discordId = c.req.param("id");
+  const user = await prisma.users.findUnique({
+    where: {
+      discordId,
+    },
+  });
+  return c.json(user);
+});
+
 app.post("/", zValidator("json", userSchema), async (c) => {
   const validated = c.req.valid("json");
 
@@ -21,6 +31,20 @@ app.post("/", zValidator("json", userSchema), async (c) => {
   }
 
   const user = await prisma.users.create({ data: validated });
+  return c.json(user);
+});
+
+app.get("/:id/message-create", async (c) => {
+  const discordId = c.req.param("id");
+  const user = await prisma.users.update({
+    where: {
+      discordId,
+    },
+    data: {
+      messages: { increment: 1 },
+    },
+  });
+
   return c.json(user);
 });
 
@@ -43,7 +67,7 @@ app.post("/:id/add-xp", zValidator("json", addXpSchema), async (c) => {
     return c.json(user);
   }
 
-  const { newXp, newLevel } = calculateXpAndLevel(
+  const { newXp, newLevel, currentLevel } = calculateXpAndLevel(
     user.xp,
     user.level,
     validated.amount
@@ -61,6 +85,8 @@ app.post("/:id/add-xp", zValidator("json", addXpSchema), async (c) => {
   return c.json({
     message: "XP updated",
     data: updatedUser,
+    currentLevel,
+    newLevel,
   });
 });
 
@@ -78,7 +104,7 @@ app.patch("/:id", zValidator("json", userSchema), async (c) => {
 
 app.delete("/:id", async (c) => {
   const id = c.req.param("id");
-  const user = await prisma.users.delete({ where: { id: id } });
+  const user = await prisma.users.delete({ where: { discordId: id } });
 
   return c.json(user);
 });

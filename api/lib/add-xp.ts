@@ -10,7 +10,7 @@ export function calculateXpAndLevel(
   currentXp: number,
   currentLevel: number,
   amount: number
-): { newXp: number; newLevel: number } {
+): { newXp: number; newLevel: number; currentLevel: number } {
   let xp = currentXp + amount;
   let level = currentLevel;
 
@@ -19,5 +19,5 @@ export function calculateXpAndLevel(
     level += 1;
   }
 
-  return { newXp: xp, newLevel: level };
+  return { newXp: xp, newLevel: level, currentLevel };
 }
