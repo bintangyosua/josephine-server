@@ -116,6 +116,7 @@ Prisma.NullTypes = {
 exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
   discordId: 'discordId',
+  username: 'username',
   level: 'level',
   xp: 'xp',
   totalXp: 'totalXp',

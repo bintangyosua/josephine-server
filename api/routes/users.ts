@@ -3,6 +3,7 @@ import { prisma } from "../prisma.js";
 import { addXpSchema, userSchema } from "../schema/users.schema.js";
 import { zValidator } from "@hono/zod-validator";
 import { calculateXpAndLevel } from "../lib/add-xp.js";
+import { messageCreateSchema } from "../schema/message-create.schema.js";
 
 const app = new Hono();
 
@@ -34,19 +35,24 @@ app.post("/", zValidator("json", userSchema), async (c) => {
   return c.json(user);
 });
 
-app.get("/:id/message-create", async (c) => {
-  const discordId = c.req.param("id");
-  const user = await prisma.users.update({
-    where: {
-      discordId,
-    },
-    data: {
-      messages: { increment: 1 },
-    },
-  });
+app.post(
+  "/:id/message-create",
+  zValidator("json", messageCreateSchema),
+  async (c) => {
+    const discordId = c.req.param("id");
+    const user = await prisma.users.update({
+      where: {
+        discordId,
+      },
+      data: {
+        messages: { increment: 1 },
+        username: c.req.valid("json").username,
+      },
+    });
 
-  return c.json(user);
-});
+    return c.json(user);
+  }
+);
 
 app.post("/:id/add-xp", zValidator("json", addXpSchema), async (c) => {
   const validated = c.req.valid("json");
@@ -58,6 +64,7 @@ app.post("/:id/add-xp", zValidator("json", addXpSchema), async (c) => {
     user = await prisma.users.create({
       data: {
         discordId,
+        username: validated.username,
         xp: validated.amount,
         level: 1,
         totalXp: validated.amount,

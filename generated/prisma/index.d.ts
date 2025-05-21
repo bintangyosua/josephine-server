@@ -852,6 +852,7 @@ export namespace Prisma {
   export type UsersMinAggregateOutputType = {
     id: string | null
     discordId: string | null
+    username: string | null
     level: number | null
     xp: number | null
     totalXp: number | null
@@ -863,6 +864,7 @@ export namespace Prisma {
   export type UsersMaxAggregateOutputType = {
     id: string | null
     discordId: string | null
+    username: string | null
     level: number | null
     xp: number | null
     totalXp: number | null
@@ -874,6 +876,7 @@ export namespace Prisma {
   export type UsersCountAggregateOutputType = {
     id: number
     discordId: number
+    username: number
     level: number
     xp: number
     totalXp: number
@@ -901,6 +904,7 @@ export namespace Prisma {
   export type UsersMinAggregateInputType = {
     id?: true
     discordId?: true
+    username?: true
     level?: true
     xp?: true
     totalXp?: true
@@ -912,6 +916,7 @@ export namespace Prisma {
   export type UsersMaxAggregateInputType = {
     id?: true
     discordId?: true
+    username?: true
     level?: true
     xp?: true
     totalXp?: true
@@ -923,6 +928,7 @@ export namespace Prisma {
   export type UsersCountAggregateInputType = {
     id?: true
     discordId?: true
+    username?: true
     level?: true
     xp?: true
     totalXp?: true
@@ -1021,6 +1027,7 @@ export namespace Prisma {
   export type UsersGroupByOutputType = {
     id: string
     discordId: string
+    username: string
     level: number
     xp: number
     totalXp: number | null
@@ -1051,6 +1058,7 @@ export namespace Prisma {
   export type UsersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     discordId?: boolean
+    username?: boolean
     level?: boolean
     xp?: boolean
     totalXp?: boolean
@@ -1064,6 +1072,7 @@ export namespace Prisma {
   export type UsersSelectScalar = {
     id?: boolean
     discordId?: boolean
+    username?: boolean
     level?: boolean
     xp?: boolean
     totalXp?: boolean
@@ -1072,7 +1081,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "discordId" | "level" | "xp" | "totalXp" | "messages" | "createdAt" | "updatedAt", ExtArgs["result"]["users"]>
+  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "discordId" | "username" | "level" | "xp" | "totalXp" | "messages" | "createdAt" | "updatedAt", ExtArgs["result"]["users"]>
 
   export type $UsersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Users"
@@ -1080,6 +1089,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       discordId: string
+      username: string
       level: number
       xp: number
       totalXp: number | null
@@ -1480,6 +1490,7 @@ export namespace Prisma {
   interface UsersFieldRefs {
     readonly id: FieldRef<"Users", 'String'>
     readonly discordId: FieldRef<"Users", 'String'>
+    readonly username: FieldRef<"Users", 'String'>
     readonly level: FieldRef<"Users", 'Int'>
     readonly xp: FieldRef<"Users", 'Int'>
     readonly totalXp: FieldRef<"Users", 'Int'>
@@ -1841,6 +1852,7 @@ export namespace Prisma {
   export const UsersScalarFieldEnum: {
     id: 'id',
     discordId: 'discordId',
+    username: 'username',
     level: 'level',
     xp: 'xp',
     totalXp: 'totalXp',
@@ -1938,6 +1950,7 @@ export namespace Prisma {
     NOT?: UsersWhereInput | UsersWhereInput[]
     id?: StringFilter<"Users"> | string
     discordId?: StringFilter<"Users"> | string
+    username?: StringFilter<"Users"> | string
     level?: IntFilter<"Users"> | number
     xp?: IntFilter<"Users"> | number
     totalXp?: IntNullableFilter<"Users"> | number | null
@@ -1949,6 +1962,7 @@ export namespace Prisma {
   export type UsersOrderByWithRelationInput = {
     id?: SortOrder
     discordId?: SortOrder
+    username?: SortOrder
     level?: SortOrder
     xp?: SortOrder
     totalXp?: SortOrder
@@ -1963,6 +1977,7 @@ export namespace Prisma {
     AND?: UsersWhereInput | UsersWhereInput[]
     OR?: UsersWhereInput[]
     NOT?: UsersWhereInput | UsersWhereInput[]
+    username?: StringFilter<"Users"> | string
     level?: IntFilter<"Users"> | number
     xp?: IntFilter<"Users"> | number
     totalXp?: IntNullableFilter<"Users"> | number | null
@@ -1974,6 +1989,7 @@ export namespace Prisma {
   export type UsersOrderByWithAggregationInput = {
     id?: SortOrder
     discordId?: SortOrder
+    username?: SortOrder
     level?: SortOrder
     xp?: SortOrder
     totalXp?: SortOrder
@@ -1993,6 +2009,7 @@ export namespace Prisma {
     NOT?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Users"> | string
     discordId?: StringWithAggregatesFilter<"Users"> | string
+    username?: StringWithAggregatesFilter<"Users"> | string
     level?: IntWithAggregatesFilter<"Users"> | number
     xp?: IntWithAggregatesFilter<"Users"> | number
     totalXp?: IntNullableWithAggregatesFilter<"Users"> | number | null
@@ -2004,6 +2021,7 @@ export namespace Prisma {
   export type UsersCreateInput = {
     id?: string
     discordId: string
+    username?: string
     level?: number
     xp?: number
     totalXp?: number | null
@@ -2015,6 +2033,7 @@ export namespace Prisma {
   export type UsersUncheckedCreateInput = {
     id?: string
     discordId: string
+    username?: string
     level?: number
     xp?: number
     totalXp?: number | null
@@ -2025,6 +2044,7 @@ export namespace Prisma {
 
   export type UsersUpdateInput = {
     discordId?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
     level?: IntFieldUpdateOperationsInput | number
     xp?: IntFieldUpdateOperationsInput | number
     totalXp?: NullableIntFieldUpdateOperationsInput | number | null
@@ -2035,6 +2055,7 @@ export namespace Prisma {
 
   export type UsersUncheckedUpdateInput = {
     discordId?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
     level?: IntFieldUpdateOperationsInput | number
     xp?: IntFieldUpdateOperationsInput | number
     totalXp?: NullableIntFieldUpdateOperationsInput | number | null
@@ -2046,6 +2067,7 @@ export namespace Prisma {
   export type UsersCreateManyInput = {
     id?: string
     discordId: string
+    username?: string
     level?: number
     xp?: number
     totalXp?: number | null
@@ -2056,6 +2078,7 @@ export namespace Prisma {
 
   export type UsersUpdateManyMutationInput = {
     discordId?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
     level?: IntFieldUpdateOperationsInput | number
     xp?: IntFieldUpdateOperationsInput | number
     totalXp?: NullableIntFieldUpdateOperationsInput | number | null
@@ -2066,6 +2089,7 @@ export namespace Prisma {
 
   export type UsersUncheckedUpdateManyInput = {
     discordId?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
     level?: IntFieldUpdateOperationsInput | number
     xp?: IntFieldUpdateOperationsInput | number
     totalXp?: NullableIntFieldUpdateOperationsInput | number | null
@@ -2126,6 +2150,7 @@ export namespace Prisma {
   export type UsersCountOrderByAggregateInput = {
     id?: SortOrder
     discordId?: SortOrder
+    username?: SortOrder
     level?: SortOrder
     xp?: SortOrder
     totalXp?: SortOrder
@@ -2144,6 +2169,7 @@ export namespace Prisma {
   export type UsersMaxOrderByAggregateInput = {
     id?: SortOrder
     discordId?: SortOrder
+    username?: SortOrder
     level?: SortOrder
     xp?: SortOrder
     totalXp?: SortOrder
@@ -2155,6 +2181,7 @@ export namespace Prisma {
   export type UsersMinOrderByAggregateInput = {
     id?: SortOrder
     discordId?: SortOrder
+    username?: SortOrder
     level?: SortOrder
     xp?: SortOrder
     totalXp?: SortOrder

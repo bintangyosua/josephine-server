@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const userSchema = z.object({
   discordId: z.string(),
+  username: z.string(),
   // level: z.number().int().nonnegative().optional().default(1),
   // xp: z.number().int().nonnegative().optional().default(0),
   // totalXp: z.number().int().nonnegative().optional().default(0),
@@ -10,6 +11,7 @@ const userSchema = z.object({
 
 const addXpSchema = z.object({
   amount: z.number().int().nonnegative(),
+  username: z.string(),
 });
 
 export type User = z.infer<typeof userSchema>;

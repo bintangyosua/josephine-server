@@ -12,6 +12,7 @@ datasource db {
 model Users {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   discordId String   @unique
+  username  String   @default("no name")
   level     Int      @default(1)
   xp        Int      @default(0)
   totalXp   Int?     @default(0)
